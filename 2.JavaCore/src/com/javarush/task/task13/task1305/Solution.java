@@ -8,7 +8,7 @@ public class Solution {
 
     public static void main(String[] args) {
 
-        System.out.println(new Dream().HOBBY.toString());
+        System.out.println(Dream.HOBBY.toString());
         System.out.println(new Hobby().toString());
 
     }
@@ -17,11 +17,15 @@ public class Solution {
     }
 
     interface Dream {
-        private static Hobby HOBBY = new Hobby();
+        public static Hobby HOBBY = new Hobby();
     }
 
-    class Hobby extends Desire implements Dream {
-        static int INDEX = 1;
+    public static class Hobby implements Desire, Dream {
+
+        public int INDEX = 1;
+
+        public Hobby() {
+        }
 
         @Override
         public String toString() {
