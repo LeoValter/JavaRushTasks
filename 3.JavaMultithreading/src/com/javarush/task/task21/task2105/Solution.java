@@ -1,6 +1,7 @@
 package com.javarush.task.task21.task2105;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 /* 
@@ -14,11 +15,18 @@ public class Solution {
         this.last = last;
     }
 
+    @Override
     public boolean equals(Object o) {
-        if (!(o instanceof Solution))
-            return false;
-        Solution n = (Solution) o;
-        return n.first.equals(first) && n.last.equals(last);
+        if (this == o) return true;
+        if (!(o instanceof Solution)) return false;
+        Solution solution = (Solution) o;
+        return first == solution.first &&
+                last == solution.last;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(first, last);
     }
 
     public static void main(String[] args) {
