@@ -20,6 +20,16 @@ public class Solution {
 
     public static boolean compareMD5(ByteArrayOutputStream byteArrayOutputStream, String md5) throws Exception {
 
-        return false;
+        MessageDigest messageDigest = MessageDigest.getInstance("MD5");
+        messageDigest.update(byteArrayOutputStream.toByteArray());
+        byte[] digest = messageDigest.digest();
+        StringBuilder stringBuilder = new StringBuilder();
+        for (byte b : digest) {
+            String tmp = Integer.toHexString(0xff & b);
+            tmp = (tmp.length() == 1) ? "0" + tmp : tmp;
+            stringBuilder.append(tmp);
+        }
+
+        return stringBuilder.toString().equals(md5);
     }
 }
